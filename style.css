@@ -696,6 +696,8 @@ a {
 
     background: rgba(248, 243, 238, 0.9);
 
+    overflow: hidden;
+
     transition: 0.4s ease;
 }
 
@@ -735,13 +737,13 @@ a {
     text-align: center;
 }
 
-.project-image span {
+.project-image > span {
     font-size: 10px;
 
     letter-spacing: 4px;
 }
 
-.project-image h3 {
+.project-image > h3 {
     margin-top: 15px;
 
     font-size: 55px;
@@ -753,6 +755,10 @@ a {
 
 .project-details {
     padding: 65px 55px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .project-category {
@@ -1177,7 +1183,7 @@ footer {
         min-height: 280px;
     }
 
-    .project-image h3 {
+    .project-image > h3 {
         font-size: 45px;
     }
 
@@ -1258,713 +1264,812 @@ footer {
 
 }
 
-/* ==========================================
-   LAUNDRY GO PROJECT COVER
-========================================== */
+/* =========================================
+   LAUNDRY GO PROJECT COVER — CLEAN VERSION
+========================================= */
+
+/*
+   This block is intentionally self-contained so it does not
+   disturb the rest of the portfolio styles.
+*/
 
 .laundry-project-cover {
     position: relative;
+    isolation: isolate;
     overflow: hidden;
 
-    min-height: 565px;
-
-    padding: 55px;
+    min-height: 500px;
+    padding: 48px 42px 92px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
     background:
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(86, 204, 242, 0.20),
+            transparent 34%
+        ),
+        radial-gradient(
+            circle at 8% 90%,
+            rgba(47, 128, 237, 0.18),
+            transparent 32%
+        ),
         linear-gradient(
             145deg,
-            #17365f,
-            #0b1f3a
+            #17365f 0%,
+            #0b1f3a 68%,
+            #08182d 100%
         );
+
+    color: white;
 }
 
-
-/* dekorasi background */
-
-.laundry-project-cover::before {
-    content: "";
-
-    position: absolute;
-
-    width: 330px;
-    height: 330px;
-
-    border-radius: 50%;
-
-    top: -130px;
-    right: -110px;
-
-    background:
-        rgba(86, 204, 242, 0.14);
-}
-
-
+/* Soft decoration only; it stays behind the mockup. */
+.laundry-project-cover::before,
 .laundry-project-cover::after {
     content: "";
-
     position: absolute;
-
-    width: 230px;
-    height: 230px;
-
+    z-index: -1;
     border-radius: 50%;
+    pointer-events: none;
+}
 
-    bottom: -100px;
-    left: -80px;
+.laundry-project-cover::before {
+    width: 290px;
+    height: 290px;
+    top: -145px;
+    right: -115px;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+}
 
-    background:
-        rgba(47, 128, 237, 0.16);
+.laundry-project-cover::after {
+    width: 210px;
+    height: 210px;
+    left: -95px;
+    bottom: -105px;
+    border: 1px solid rgba(86, 204, 242, 0.16);
 }
 
 
-/* browser mockup */
+/* ---------- Browser mockup ---------- */
 
 .laundry-browser {
     position: relative;
     z-index: 2;
 
-    width: 100%;
-    max-width: 570px;
+    width: min(100%, 530px);
 
     overflow: hidden;
 
+    border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 16px;
 
     background: #ffffff;
 
     box-shadow:
-        0 30px 70px
-        rgba(0, 0, 0, 0.28);
+        0 28px 60px rgba(0, 0, 0, 0.26),
+        0 4px 14px rgba(0, 0, 0, 0.12);
 
-    transform:
-        rotate(-1.5deg);
-
+    transform: translateY(-4px);
     transition:
-        transform 0.4s ease;
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+.laundry-project-cover:hover .laundry-browser {
+    transform: translateY(-9px);
+    box-shadow:
+        0 34px 75px rgba(0, 0, 0, 0.32),
+        0 5px 16px rgba(0, 0, 0, 0.14);
 }
 
 
-.laundry-project-cover:hover
-.laundry-browser {
-
-    transform:
-        rotate(0deg)
-        translateY(-5px);
-}
-
-
-/* browser top */
+/* ---------- Browser bar ---------- */
 
 .laundry-browser-top {
     height: 34px;
+    padding: 0 13px;
 
     display: flex;
     align-items: center;
+    gap: 12px;
 
-    gap: 18px;
-
-    padding:
-        0 14px;
-
-    background:
-        #eef3f8;
+    background: #eef3f8;
+    border-bottom: 1px solid #e2e9f0;
 }
-
 
 .browser-dots {
     display: flex;
     gap: 5px;
+    flex: 0 0 auto;
 }
-
 
 .browser-dots span {
     width: 7px;
     height: 7px;
 
-    border-radius: 50%;
+    display: block;
 
-    background:
-        #c5ced8;
+    border-radius: 50%;
+    background: #bdc7d2;
 }
 
-
 .browser-address {
+    min-width: 0;
     flex: 1;
 
-    padding:
-        5px 10px;
+    padding: 5px 10px;
+
+    overflow: hidden;
 
     border-radius: 6px;
 
-    background:
-        white;
+    background: #ffffff;
+    color: #718091;
 
-    color:
-        #778390;
-
-    font-size:
-        7px;
+    font-size: 8px;
+    line-height: 1;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 
-/* mini app */
+/* ---------- Mini application ---------- */
 
 .laundry-mini-app {
-    height: 335px;
+    height: 315px;
 
     display: grid;
+    grid-template-columns: 58px minmax(0, 1fr);
 
-    grid-template-columns:
-        62px 1fr;
-
-    background:
-        #f5f8fc;
+    background: #f5f8fc;
 }
 
 
-/* sidebar */
+/* Sidebar */
 
 .mini-sidebar {
-    padding: 17px 12px;
+    padding: 16px 11px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 16px;
 
-    gap: 17px;
-
-    background:
-        #0b1f3a;
+    background: #0b1f3a;
 }
 
-
 .mini-logo {
-    width: 31px;
-    height: 31px;
+    width: 32px;
+    height: 32px;
+    margin-bottom: 8px;
 
     display: grid;
     place-items: center;
 
-    margin-bottom: 11px;
-
     border-radius: 9px;
 
-    background:
-        linear-gradient(
-            135deg,
-            #2f80ed,
-            #56ccf2
-        );
+    background: linear-gradient(135deg, #2f80ed, #56ccf2);
+    box-shadow: 0 8px 18px rgba(47, 128, 237, 0.24);
 }
-
 
 .mini-logo span {
-    color:
-        white;
-
-    font-size:
-        8px;
-
-    font-weight:
-        800;
+    color: #ffffff;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0;
 }
-
 
 .mini-menu {
     width: 26px;
     height: 5px;
 
-    border-radius: 10px;
+    border-radius: 999px;
 
-    background:
-        rgba(255,255,255,.16);
+    background: rgba(255, 255, 255, 0.15);
 }
-
 
 .mini-menu.active {
-    background:
-        #56ccf2;
+    background: #56ccf2;
 }
 
 
-/* dashboard */
+/* Dashboard body */
 
 .mini-dashboard {
-    padding:
-        20px;
+    min-width: 0;
+    padding: 18px;
 }
-
 
 .mini-dashboard-head {
+    margin-bottom: 14px;
+
     display: flex;
-
-    justify-content: space-between;
     align-items: center;
-
-    margin-bottom: 17px;
+    justify-content: space-between;
 }
 
-
-.mini-dashboard-head div:first-child {
+.mini-dashboard-head > div:first-child {
     display: flex;
     flex-direction: column;
-
     gap: 2px;
 }
 
-
 .mini-dashboard-head small {
-    color:
-        #8090a0;
+    color: #8795a4;
 
-    font-size:
-        5px;
-
-    letter-spacing:
-        1px;
+    font-size: 6px;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
-
 
 .mini-dashboard-head strong {
-    color:
-        #12263f;
+    color: #10243d;
 
-    font-size:
-        12px;
+    font-size: 13px;
+    line-height: 1.2;
 }
-
 
 .mini-add {
-    width: 23px;
-    height: 23px;
+    width: 25px;
+    height: 25px;
 
     display: grid;
     place-items: center;
 
-    border-radius:
-        7px;
+    border-radius: 7px;
 
-    background:
-        #2f80ed;
+    background: #2f80ed;
+    color: #ffffff;
 
-    color:
-        white;
-
-    font-size:
-        12px;
+    font-size: 14px;
+    line-height: 1;
 }
 
 
-/* hero */
+/* Hero */
 
 .mini-hero {
-    height: 92px;
-
-    padding:
-        17px;
+    height: 86px;
+    padding: 14px 16px;
 
     display: flex;
-
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    gap: 12px;
 
-    border-radius:
-        13px;
+    overflow: hidden;
 
-    color:
-        white;
+    border-radius: 12px;
 
-    background:
-        linear-gradient(
-            125deg,
-            #2f80ed,
-            #56ccf2
-        );
+    color: #ffffff;
+    background: linear-gradient(120deg, #2f80ed 0%, #56ccf2 100%);
 }
 
+.mini-hero > div:first-child {
+    min-width: 0;
 
-.mini-hero div:first-child {
     display: flex;
     flex-direction: column;
-
-    gap: 5px;
+    gap: 4px;
 }
-
 
 .mini-hero small {
-    font-size:
-        5px;
-
-    letter-spacing:
-        1px;
-
-    opacity:
-        .82;
+    font-size: 5px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    opacity: 0.82;
 }
-
 
 .mini-hero strong {
-    font-size:
-        13px;
-
-    line-height:
-        1.25;
+    font-size: 13px;
+    line-height: 1.22;
 }
 
-
 .mini-shirt {
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
 
     display: grid;
     place-items: center;
 
-    border-radius:
-        50%;
+    border-radius: 50%;
 
-    background:
-        rgba(255,255,255,.16);
+    background: rgba(255, 255, 255, 0.15);
 
-    font-size:
-        21px;
+    font-size: 20px;
 }
 
 
-/* cards */
+/* Statistics */
 
 .mini-stats {
+    margin-top: 11px;
+
     display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap:
-        9px;
-
-    margin-top:
-        13px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
 }
 
+.mini-stats > div {
+    min-width: 0;
+    padding: 10px 11px;
 
-.mini-stats div {
-    padding:
-        12px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
 
-    display:
-        flex;
+    border: 1px solid #edf2f7;
+    border-radius: 9px;
 
-    flex-direction:
-        column;
-
-    gap:
-        3px;
-
-    border-radius:
-        10px;
-
-    background:
-        white;
-
-    box-shadow:
-        0 8px 20px
-        rgba(11,31,58,.05);
+    background: #ffffff;
 }
-
 
 .mini-stats span {
-    color:
-        #12263f;
+    color: #11263f;
 
-    font-size:
-        13px;
-
-    font-weight:
-        800;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0;
 }
-
 
 .mini-stats small {
-    color:
-        #8793a0;
+    overflow: hidden;
 
-    font-size:
-        5px;
+    color: #8996a4;
+
+    font-size: 5px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 
-/* bottom */
+/* Bottom widgets */
 
 .mini-bottom {
+    margin-top: 10px;
+
     display: grid;
-
-    grid-template-columns:
-        1.7fr 1fr;
-
-    gap:
-        10px;
-
-    margin-top:
-        12px;
+    grid-template-columns: minmax(0, 1.55fr) minmax(90px, 0.85fr);
+    gap: 8px;
 }
-
 
 .mini-table,
 .mini-chart {
-    height:
-        83px;
+    height: 72px;
+    padding: 10px;
 
-    padding:
-        12px;
+    border: 1px solid #edf2f7;
+    border-radius: 9px;
 
-    border-radius:
-        10px;
-
-    background:
-        white;
+    background: #ffffff;
 }
-
 
 .mini-table {
-    display:
-        flex;
-
-    flex-direction:
-        column;
-
-    gap:
-        9px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 7px;
 }
-
 
 .mini-table span {
-    height:
-        5px;
+    display: block;
+    height: 5px;
 
-    border-radius:
-        20px;
-
-    background:
-        #e7edf4;
+    border-radius: 999px;
+    background: #e7edf4;
 }
-
 
 .mini-table span:nth-child(1) {
-    width:
-        90%;
+    width: 90%;
 }
-
 
 .mini-table span:nth-child(2) {
-    width:
-        75%;
+    width: 72%;
 }
-
 
 .mini-table span:nth-child(3) {
-    width:
-        84%;
+    width: 82%;
 }
-
 
 .mini-table span:nth-child(4) {
-    width:
-        60%;
+    width: 58%;
 }
-
-
-/* fake chart */
 
 .mini-chart {
-    display:
-        flex;
-
-    align-items:
-        flex-end;
-
-    justify-content:
-        space-between;
-
-    gap:
-        5px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 5px;
 }
-
 
 .mini-chart div {
-    flex:
-        1;
+    flex: 1;
+    min-width: 5px;
 
-    border-radius:
-        4px 4px 0 0;
+    border-radius: 4px 4px 1px 1px;
 
-    background:
-        linear-gradient(
-            to top,
-            #2f80ed,
-            #56ccf2
-        );
+    background: linear-gradient(to top, #2f80ed, #56ccf2);
 }
-
 
 .mini-chart div:nth-child(1) {
-    height:
-        32%;
+    height: 34%;
 }
-
 
 .mini-chart div:nth-child(2) {
-    height:
-        64%;
+    height: 63%;
 }
-
 
 .mini-chart div:nth-child(3) {
-    height:
-        47%;
+    height: 46%;
 }
-
 
 .mini-chart div:nth-child(4) {
-    height:
-        82%;
+    height: 80%;
 }
 
 
-/* project label */
+/* ---------- Cover label ---------- */
 
 .project-cover-info {
-    position:
-        absolute;
+    position: absolute;
+    z-index: 4;
 
-    z-index:
-        5;
+    left: 32px;
+    right: 32px;
+    bottom: 25px;
 
-    left:
-        35px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 18px;
 
-    right:
-        35px;
-
-    bottom:
-        27px;
-
-    display:
-        flex;
-
-    align-items:
-        flex-end;
-
-    justify-content:
-        space-between;
-
-    color:
-        white;
+    pointer-events: none;
 }
-
 
 .project-cover-info > div {
-    display:
-        flex;
+    min-width: 0;
 
-    flex-direction:
-        column;
-
-    gap:
-        3px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
 }
-
 
 .project-cover-info span {
-    font-size:
-        8px;
+    color: rgba(255, 255, 255, 0.64);
 
-    font-weight:
-        700;
-
-    letter-spacing:
-        2px;
-
-    opacity:
-        .68;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 2px;
 }
-
 
 .project-cover-info strong {
-    font-size:
-        20px;
-}
+    overflow: hidden;
 
+    color: #ffffff;
+
+    font-size: 19px;
+    line-height: 1.2;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 
 .project-cover-info a {
-    width:
-        43px;
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
 
-    height:
-        43px;
+    display: grid;
+    place-items: center;
 
-    display:
-        grid;
+    border-radius: 50%;
 
-    place-items:
-        center;
+    background: #ffffff;
+    color: #0b1f3a;
 
-    border-radius:
-        50%;
+    font-size: 17px;
+    line-height: 1;
+    text-decoration: none;
 
-    background:
-        white;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
 
-    color:
-        #0b1f3a;
-
-    text-decoration:
-        none;
-
-    font-size:
-        17px;
+    pointer-events: auto;
 
     transition:
-        transform .3s ease;
+        transform 0.3s ease,
+        background 0.3s ease;
 }
-
 
 .project-cover-info a:hover {
-    transform:
-        translateY(-4px);
+    transform: translateY(-3px);
+    background: #eef7ff;
 }
 
 
-/* responsive */
+/* ---------- Project section balancing ---------- */
 
-@media (max-width: 768px) {
+.project-card:has(.laundry-project-cover) {
+    align-items: stretch;
+}
+
+.project-card:has(.laundry-project-cover) .project-details {
+    min-height: 500px;
+}
+
+.project-card:has(.laundry-project-cover) .project-number {
+    color: rgba(255, 255, 255, 0.92);
+}
+
+
+/* =========================================
+   RESPONSIVE — LAUNDRY COVER
+========================================= */
+
+@media (max-width: 1100px) {
 
     .laundry-project-cover {
-        min-height:
-            450px;
-
-        padding:
-            35px 22px 80px;
+        min-height: 470px;
+        padding: 42px 30px 86px;
     }
 
     .laundry-mini-app {
-        height:
-            280px;
+        height: 300px;
+    }
 
-        grid-template-columns:
-            50px 1fr;
+    .project-card:has(.laundry-project-cover) .project-details {
+        min-height: 470px;
+    }
+
+}
+
+
+@media (max-width: 900px) {
+
+    .project-card:has(.laundry-project-cover) .project-details {
+        min-height: auto;
+    }
+
+    .laundry-project-cover {
+        min-height: 440px;
+        padding: 38px 9% 84px;
+    }
+
+    .laundry-browser {
+        width: min(100%, 620px);
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .laundry-project-cover {
+        min-height: 390px;
+        padding: 28px 20px 76px;
+    }
+
+    .laundry-browser-top {
+        height: 30px;
+    }
+
+    .laundry-mini-app {
+        height: 255px;
+        grid-template-columns: 46px minmax(0, 1fr);
+    }
+
+    .mini-sidebar {
+        padding: 13px 8px;
+        gap: 13px;
+    }
+
+    .mini-logo {
+        width: 28px;
+        height: 28px;
+        margin-bottom: 5px;
+    }
+
+    .mini-menu {
+        width: 21px;
+        height: 4px;
     }
 
     .mini-dashboard {
-        padding:
-            14px;
+        padding: 13px;
+    }
+
+    .mini-dashboard-head {
+        margin-bottom: 10px;
+    }
+
+    .mini-dashboard-head strong {
+        font-size: 11px;
+    }
+
+    .mini-add {
+        width: 22px;
+        height: 22px;
     }
 
     .mini-hero {
-        height:
-            78px;
+        height: 72px;
+        padding: 11px 12px;
+    }
+
+    .mini-hero strong {
+        font-size: 11px;
+    }
+
+    .mini-shirt {
+        width: 39px;
+        height: 39px;
+        flex-basis: 39px;
+        font-size: 16px;
+    }
+
+    .mini-stats {
+        gap: 6px;
+        margin-top: 8px;
+    }
+
+    .mini-stats > div {
+        padding: 8px;
+    }
+
+    .mini-bottom {
+        margin-top: 7px;
+        gap: 6px;
+    }
+
+    .mini-table,
+    .mini-chart {
+        height: 58px;
+        padding: 8px;
+    }
+
+    .project-cover-info {
+        left: 22px;
+        right: 22px;
+        bottom: 20px;
+    }
+
+    .project-cover-info strong {
+        font-size: 17px;
+    }
+
+    .project-cover-info a {
+        width: 38px;
+        height: 38px;
+        flex-basis: 38px;
+    }
+
+}
+
+
+@media (max-width: 430px) {
+
+    .laundry-project-cover {
+        min-height: 330px;
+        padding: 22px 14px 70px;
+    }
+
+    .laundry-browser {
+        border-radius: 12px;
+    }
+
+    .laundry-browser-top {
+        height: 28px;
+        padding: 0 9px;
+    }
+
+    .browser-address {
+        font-size: 7px;
+    }
+
+    .laundry-mini-app {
+        height: 205px;
+        grid-template-columns: 40px minmax(0, 1fr);
+    }
+
+    .mini-sidebar {
+        padding: 10px 6px;
+        gap: 11px;
+    }
+
+    .mini-logo {
+        width: 25px;
+        height: 25px;
+    }
+
+    .mini-menu {
+        width: 18px;
+    }
+
+    .mini-dashboard {
+        padding: 10px;
+    }
+
+    .mini-dashboard-head {
+        margin-bottom: 8px;
+    }
+
+    .mini-dashboard-head small {
+        display: none;
+    }
+
+    .mini-dashboard-head strong {
+        font-size: 10px;
+    }
+
+    .mini-add {
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
+    }
+
+    .mini-hero {
+        height: 64px;
+        padding: 9px 10px;
+        border-radius: 9px;
+    }
+
+    .mini-hero small {
+        display: none;
+    }
+
+    .mini-hero strong {
+        font-size: 10px;
+    }
+
+    .mini-shirt {
+        width: 34px;
+        height: 34px;
+        flex-basis: 34px;
+        font-size: 14px;
+    }
+
+    .mini-stats {
+        margin-top: 7px;
+    }
+
+    .mini-stats > div {
+        padding: 7px 6px;
+    }
+
+    .mini-stats span {
+        font-size: 10px;
+    }
+
+    .mini-stats small {
+        font-size: 4px;
+    }
+
+    .mini-bottom {
+        display: none;
+    }
+
+    .project-cover-info {
+        left: 18px;
+        right: 18px;
+        bottom: 17px;
+    }
+
+    .project-cover-info span {
+        font-size: 7px;
+        letter-spacing: 1.5px;
+    }
+
+    .project-cover-info strong {
+        font-size: 15px;
+    }
+
+    .project-cover-info a {
+        width: 36px;
+        height: 36px;
+        flex-basis: 36px;
+        font-size: 15px;
     }
 
 }
