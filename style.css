@@ -1396,3 +1396,389 @@ footer {
         font-size: 14px;
     }
 }
+
+/* =====================================================
+   PRESENSI DIGITAL PROJECT
+===================================================== */
+
+.attendance-cover {
+    position: relative;
+
+    min-height: 360px;
+
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(99,102,241,.45),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(236,72,153,.35),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #080b1d,
+            #111638,
+            #080b1d
+        );
+}
+
+
+/* GRID BACKGROUND */
+
+.attendance-grid {
+
+    position: absolute;
+
+    inset: 0;
+
+    opacity: .18;
+
+    background-image:
+        linear-gradient(
+            rgba(129,140,248,.35) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(129,140,248,.35) 1px,
+            transparent 1px
+        );
+
+    background-size: 35px 35px;
+
+    transform:
+        perspective(400px)
+        rotateX(55deg)
+        scale(1.5);
+
+    transform-origin: center bottom;
+
+    animation:
+        gridMove 8s linear infinite;
+}
+
+@keyframes gridMove {
+
+    from {
+        transform:
+            perspective(400px)
+            rotateX(55deg)
+            scale(1.5)
+            translateY(0);
+    }
+
+    to {
+        transform:
+            perspective(400px)
+            rotateX(55deg)
+            scale(1.5)
+            translateY(35px);
+    }
+}
+
+
+/* GLOW */
+
+.attendance-glow {
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    filter: blur(5px);
+
+    pointer-events: none;
+}
+
+.glow-one {
+
+    width: 180px;
+    height: 180px;
+
+    top: -70px;
+    left: -50px;
+
+    background:
+        rgba(99,102,241,.28);
+
+    animation:
+        attendanceFloatOne 6s ease-in-out infinite;
+}
+
+.glow-two {
+
+    width: 200px;
+    height: 200px;
+
+    right: -70px;
+    bottom: -80px;
+
+    background:
+        rgba(236,72,153,.22);
+
+    animation:
+        attendanceFloatTwo 7s ease-in-out infinite;
+}
+
+@keyframes attendanceFloatOne {
+
+    0%,100% {
+        transform:
+            translate(0,0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate(50px,40px)
+            scale(1.25);
+    }
+}
+
+@keyframes attendanceFloatTwo {
+
+    0%,100% {
+        transform:
+            translate(0,0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate(-40px,-50px)
+            scale(1.2);
+    }
+}
+
+
+/* COVER CONTENT */
+
+.attendance-cover-content {
+
+    position: relative;
+
+    z-index: 5;
+
+    width: 80%;
+
+    text-align: center;
+
+    animation:
+        attendanceContentFloat 4s ease-in-out infinite;
+}
+
+@keyframes attendanceContentFloat {
+
+    0%,100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-7px);
+    }
+}
+
+
+/* ICON */
+
+.attendance-icon {
+
+    width: 58px;
+    height: 58px;
+
+    margin:
+        0 auto 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6366f1,
+            #8b5cf6,
+            #ec4899
+        );
+
+    color: white;
+
+    font-size: 28px;
+
+    font-weight: 800;
+
+    box-shadow:
+        0 0 25px rgba(99,102,241,.55),
+        0 0 55px rgba(139,92,246,.25);
+
+    animation:
+        attendanceIconGlow 2.5s ease-in-out infinite;
+}
+
+@keyframes attendanceIconGlow {
+
+    0%,100% {
+        box-shadow:
+            0 0 20px rgba(99,102,241,.4);
+    }
+
+    50% {
+        box-shadow:
+            0 0 35px rgba(139,92,246,.8),
+            0 0 60px rgba(236,72,153,.3);
+    }
+}
+
+
+/* TEXT */
+
+.attendance-kicker {
+
+    margin-bottom: 8px;
+
+    color: #a5b4fc;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+.attendance-cover h3 {
+
+    margin: 0;
+
+    color: white;
+
+    font-size: 31px;
+
+    line-height: .98;
+
+    letter-spacing: -1.5px;
+}
+
+.attendance-subtitle {
+
+    margin-top: 12px;
+
+    color: #94a3b8;
+
+    font-size: 11px;
+}
+
+
+/* MINI DASHBOARD */
+
+.mini-dashboard {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-top: 25px;
+}
+
+.mini-card {
+
+    min-width: 90px;
+
+    padding: 10px;
+
+    background:
+        rgba(255,255,255,.07);
+
+    border:
+        1px solid
+        rgba(255,255,255,.1);
+
+    border-radius: 10px;
+
+    backdrop-filter: blur(10px);
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.2);
+
+    animation:
+        miniCardFloat 3s ease-in-out infinite;
+}
+
+.mini-card:nth-child(2) {
+
+    animation-delay:
+        .4s;
+}
+
+.mini-card span {
+
+    display: block;
+
+    color: #64748b;
+
+    font-size: 7px;
+
+    letter-spacing: 1px;
+}
+
+.mini-card strong {
+
+    display: block;
+
+    margin-top: 4px;
+
+    color: white;
+
+    font-size: 18px;
+}
+
+@keyframes miniCardFloat {
+
+    0%,100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-5px);
+    }
+}
+
+
+/* HOVER EFFECT */
+
+.project-card:hover .attendance-grid {
+
+    opacity: .28;
+
+    animation-duration:
+        4s;
+}
+
+.project-card:hover .attendance-cover-content {
+
+    transform:
+        scale(1.04);
+}
+
+.project-card:hover .attendance-icon {
+
+    transform:
+        rotate(-5deg)
+        scale(1.08);
+}
